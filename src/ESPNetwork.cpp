@@ -327,9 +327,9 @@ void ESPNetwork::setConnected(conn_types_t connType) {
     snprintf(sModel, sizeof(sModel), "ESP32-%s", settings.chipModel);
     SSDP.setModelNumber(0, sModel);
   }
-  SSDP.setModelURL(0, "https://github.com/rstrouse/ESPSomfy-RTS");
-  SSDP.setManufacturer(0, "rstrouse");
-  SSDP.setManufacturerURL(0, "https://github.com/rstrouse");
+  //SSDP.setModelURL(0, "https://github.com/rstrouse/ESPSomfy-RTS");
+  //SSDP.setManufacturer(0, "rstrouse");
+ // SSDP.setManufacturerURL(0, "https://github.com/rstrouse");
   SSDP.setURL(0, "/");
   SSDP.setActive(0, true);
   safe_wdt_reset();
