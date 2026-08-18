@@ -315,7 +315,7 @@ void ESPNetwork::setConnected(conn_types_t connType) {
   SSDP.setHTTPPort(80);
   SSDP.setSchemaURL(0, "upnp.xml");
   SSDP.setChipId(0, this->getChipId());
-  SSDP.setDeviceType(0, "urn:schemas-rstrouse-org:device:ESPSomfyRTS:1");
+  SSDP.setDeviceType(0, "urn:schemas-stephdust-org:device:ESPSomfyRTS:1");
   SSDP.setName(0, settings.hostname);
 
   //SSDP.setSerialNumber(0, "C2496952-5610-47E6-A968-2FC19737A0DB");
@@ -327,9 +327,9 @@ void ESPNetwork::setConnected(conn_types_t connType) {
     snprintf(sModel, sizeof(sModel), "ESP32-%s", settings.chipModel);
     SSDP.setModelNumber(0, sModel);
   }
-  //SSDP.setModelURL(0, "https://github.com/rstrouse/ESPSomfy-RTS");
-  //SSDP.setManufacturer(0, "rstrouse");
- // SSDP.setManufacturerURL(0, "https://github.com/rstrouse");
+  SSDP.setModelURL(0, "https://github.com/stephdust/ESPSomfy-RTS");
+  SSDP.setManufacturer(0, "stephdust");
+  SSDP.setManufacturerURL(0, "https://github.com/stephdust");
   SSDP.setURL(0, "/");
   SSDP.setActive(0, true);
   safe_wdt_reset();
@@ -462,6 +462,7 @@ bool ESPNetwork::connectWiFi(const uint8_t *bssid, const int32_t channel) {
     ESP_LOGI(TAG, "WiFi begin...");
     this->_connecting = true;
     WiFi.begin(settings.WIFI.ssid, settings.WIFI.passphrase, channel, bssid);
+    WiFi.setTxPower(WIFI_POWER_8_5dBm);
     this->connectStart = millis();
   }
   else if(settings.WIFI.ssid[0] != '\0') {
